@@ -1,0 +1,438 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>聊天室</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="__STATIC__/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="__STATIC__/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="__STATIC__/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileImage" content="__STATIC__/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="__STATIC__/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="__STATIC__/assets/css/app.css">
+  <style>
+      *{
+          -webkit-overflow-scrolling: touch;
+      }
+      .addPaddingChat{
+        padding:1px 0px;
+          display: block;
+          overflow: hidden;
+      }
+
+	.am-comment{
+		margin-top: 15px;
+	}
+  </style>
+</head>
+<body >
+  <header class="am-topbar am-topbar-inverse" style="min-height:40px;line-height: 40px!important;margin-bottom: 0">
+      <span class="am-fl " id="user_name" ></span>
+      <a type="href" class="am-btn am-btn-warning am-round am-fr am-btn-xs " style="margin-top: 5px;" onclick="logout()">退出</a>
+  </header>
+  <article class="am-comment am-scrollable-vertical" id="chatContent" style="height: auto!important;">
+
+
+  </article>
+  <article class="am-comment am-scrollable-vertical" id="friendContent" style="display: none;height: auto!important;">
+
+
+  </article>
+  <article class="am-comment am-scrollable-vertical" id="circleContent" style="display: none;height: auto!important;">
+
+
+  </article>
+  <div class="am-topbar  am-topbar-fixed-bottom ">
+      <ul class="am-avg-sm-3 am-thumbnails" style="padding:0px;">
+            <li class="am-center "  style="text-align: center;padding:0px;">
+                <span class="am-icon-btn am-primary am-icon-qq iconBottom" onclick="showBox(this,'chatContent')"></span>
+            </li>
+            <li class="am-center" style="text-align: center;padding:0px;">
+                <span class="am-icon-btn  am-icon-user iconBottom" onclick="showBox(this,'friendContent')"></span>
+            </li>
+            <li class="am-center" style="text-align: center;padding:0px;">
+                <span class="am-icon-btn  am-icon-star iconBottom" onclick="showBox(this,'circleContent')"></span>
+            </li>
+      </ul>
+  </div>
+
+  <div  class="am-offcanvas chat-box" style="background: #ccc">
+        <div class="am-offcanvas-bar am-offcanvas-bar-flip" style="background: #fff;width: 100%!important;">
+            <div style="line-height: 45px;border-bottom: 1px solid #ccc">
+                <span class="am-icon-arrow-left" style="padding-left:3px;" onclick="closeChat()"></span>
+                <a style="display: inline-block;margin-left:40%" class="am-center friend_name  response_user" ></a>
+            </div>
+
+
+            <div style="padding:0px 5px;width: 100%;height:3%;line-height: 3%;margin-bottom:10px;" id="subBox">
+                <form class="am-form-inline" style="width: 100%" id="chatForm" onsubmit="return false;" >
+                    <div class="am-form-group"  style="width:100%">
+                        <input type="text" class="am-form-field content" placeholder="" style="width:80%;display: inline">
+                        <span id="sendBtn" class="am-btn am-btn-primary am-fr" flag="" response_user="" response_user_head_url="" username="" head_url="" onclick="sendMsg(this)" style="width:18%;display: inline">发送</span>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+  </div>
+
+
+<script src="__STATIC__/js/jquery.min.js"></script>
+<script src="__STATIC__/assets/js/amazeui.min.js"></script>
+<script src="__STATIC__/layer/layer.js"></script>
+<script src="__STATIC__/js/common.js"></script>
+</body>
+</html>
+<script>
+    $(function(){
+        document.onkeydown = function(e){
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13) {
+                $('#sendBtn').click();
+            }
+        }
+    });
+    var userToken = localStorage.getItem('userToken');
+    var userId = localStorage.getItem('userId');
+    var head_url = localStorage.getItem('head_url');
+    var user_name = localStorage.getItem('user_name');
+    var websocket = new WebSocket("ws://47.100.226.80:9502");
+    websocket.onopen = function (evt) {
+        getChat(userToken);
+        getUserList(userToken);
+        $('#user_name').text(user_name);
+    };
+	//退出登录
+    function logout(){
+        localStorage.clear();
+        layer.msg('退出成功!',{'icon':5});
+        setTimeout(function(){
+            location.href="{:url('index/login/login')}";
+        },1000)
+    }
+
+    //onmessage 监听服务器数据推送
+    websocket.onmessage = function (evt) {
+        var data =JSON.parse(evt.data);
+        if(data.type==2 || data.type==3){
+            var flag = data.data.flag;
+            var content = data.data.content;
+            var time = data.data.add_time;
+            var username = data.data.username;
+            var r_head_url = data.data.head_url;
+            var html = '<li class="am-comment">';
+            html+='<img src="'+r_head_url+'" alt="" class="am-comment-avatar" width="48" height="48"/>';
+            html+='<span style="margin-left: 12px;">'+time+'</span><br>';
+            html+='<span style="margin-left: 12px;">'+content+'</span></li>';
+            $('ul.allrecord'+flag).append(html);
+            $("ul.allrecord"+flag).scrollTop($('ul.allrecord'+flag).scrollTop()+100);
+            if($('div.allChatList'+flag).length>0){
+                var liobj = $('div.allChatList'+flag);
+                $('div.allChatList'+flag).remove();
+                liobj.find('div.text'+flag).text(content);
+                $('#chatContent').prepend(liobj);
+            }else{
+                var html = '';
+                html+='<div class="am-g addPaddingChat  allChatList'+flag+'" >';
+                html+='<img class="am-comment-avatar" src="http://img.doadc.com/headimg/qun.jpg" alt=""/>';
+                html+='<div class="am-comment-main  " style="padding:5px 0px;"  onclick="showChat('+flag+')">';
+                html+='<span style="color:#000;margin-left:3px;font-size:14px;font-weight: 700;">'+username+'</span>';
+                html+='<div class="am-comment-bd text'+flag+'">'+content+'</div>';
+                html+='</div></div>';
+                $('#chatContent').prepend(html);
+            }
+        }
+        console.log('从服务器获取到的数据: ' + evt.data);
+    };
+	
+    websocket.onclose = function (evt) {
+        console.log("Disconnected");
+    };
+
+    websocket.onerror = function (evt, e) {
+        console.log('Error occured: ' + evt.data);
+    };
+
+  function showBox(obj,id){
+    $('span.iconBottom').removeClass('am-primary');
+    $(obj).addClass('am-primary');
+    $('#'+id).show().siblings('article').hide();
+  }
+  
+  //读取有过聊天用户得聊天记录
+  function showChat(flag){
+      $('div.chat-box').offCanvas('open');
+            var time = getTimestamp();
+            var randstr = randomString(10);
+            var sign = createSign(time,randstr);
+            var response_id = parseInt(flag)-parseInt(userId);
+            $.ajax({
+                url:"{:url('index/index/getChatByUser')}",
+                type:"post",
+                datatype:'json',
+                data:{'token':userToken,'time':time,'randstr':randstr,'sign':sign,'flag':flag,'response_id':response_id},
+                success:function(d){
+                    showMsg(d.data.chat,d.data.me,flag, d.data.response_user,d.data.response_user_head_url);
+                }
+      })
+  }
+  
+  //显示用户聊天记录
+  function showMsg(chatObj,me,flag,response_user,response_user_head_url){
+      var html = '';
+      html+='<ul class="allrecord'+flag+'" style="padding:0px 5px;overflow-y: scroll;overflow-x: hidden;margin-left: calc(100vw - 100%);height:520px;display: block;">';
+      for(var i=0;i<chatObj.length;i++){
+          if(chatObj[i].user_id==me){
+
+              html+='<li class="am-comment am-comment-flip"><img src="'+chatObj[i].head_url+'" alt="" class="am-comment-avatar" width="48" height="48"/>';
+			  html+='<span style="float:right;margin-right: 12px;">'+chatObj[i].add_time+'</span><br>';
+              html+='<span style="margin-right: 12px;" class="am-fr">'+chatObj[i].content+'</span></li>';
+          }else{
+              html+='<li class="am-comment"><img src="'+chatObj[i].head_url+'" alt="" class="am-comment-avatar" width="48" height="48"/>';
+              html+='<span style="margin-left: 12px;">'+chatObj[i].add_time+'</span><br>';
+              html+='<span style="margin-left: 12px;">'+chatObj[i].content+'</span></li>';
+
+          }
+
+      }
+      html+='</ul>';
+      $("ul[class^='allrecord']").hide();
+      $('a.response_user').html(response_user);
+      $('#subBox').before(html);
+      $('#sendBtn').attr('flag',flag);
+      $('#sendBtn').attr('response_user',response_user);
+      $('#sendBtn').attr('response_user_head_url',response_user_head_url);
+      $("ul.allrecord"+flag).scrollTop($('ul.allrecord'+flag).height()+20);
+  }
+  
+	function closeChat(num){
+	  $('div.chat-box').offCanvas('close');
+	}
+  
+	// 对Date的扩展，将 Date 转化为指定格式的String  
+	// 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，   
+	// 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)   
+	Date.prototype.Format = function (fmt) { //author: meizz   
+		var o = {  
+			"M+": this.getMonth() + 1, //月份   
+			"d+": this.getDate(), //日   
+			"H+": this.getHours(), //小时   
+			"m+": this.getMinutes(), //分   
+			"s+": this.getSeconds(), //秒   
+			"q+": Math.floor((this.getMonth() + 3) / 3), //季度   
+			"S": this.getMilliseconds() //毫秒   
+		};  
+		if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));  
+		for (var k in o)  
+		if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));  
+		return fmt;  
+	}  
+  
+  //发送消息
+  function sendMsg(obj)
+  {
+      if(!userToken){
+		layer.msg("非法操作，请重新登录",{'icon':5});
+		setTimeout(function(){
+            location.href="{:url('index/login/login')}";
+        },1000)
+      }
+	  
+	  if(websocket==undefined || websocket.bufferedAmount>0){
+	  	layer.msg("发送失败",{'icon':5});
+		setTimeout(function(){
+            location.href="{:url('index/index/index')}";
+        },1000)
+      }
+	
+      var flag = $(obj).attr('flag');
+	  var time =  new Date().Format("yyyy-MM-dd HH:mm:ss");  
+      var response_user = $(obj).attr('response_user');
+      var response_user_head_url = $(obj).attr('response_user_head_url');
+      var textObj = $(obj).siblings('input.content');
+      var val = textObj.val();
+      if(val.length>0 && websocket!=undefined){
+          var html = '<li class="am-comment am-comment-flip">';
+              html+='<div><img src="'+head_url+'" alt="" class="am-comment-avatar" width="48" height="48"/>';
+			  html+='<span style="float:right;margin-right: 12px;">'+time+'</span><br>';
+              html+='<span class="am-fr" style="margin-right: 12px;">'+val+'</span></div></li>';
+          $('ul.allrecord'+flag).append(html);
+          textObj.val('');
+
+          if($('div.text'+flag).length>0){
+                $('div.text'+flag).html(val);
+                var liobj = $('div.allChatList'+flag);
+                $('div.allChatList'+flag).remove();
+                $('#chatContent').prepend(liobj);
+          }else{
+                var  username= $('div.userlist'+flag).text();
+                var  res_head_url = $('div.userlist'+flag).attr('head_url');
+                var html='';
+                html+='<div class="am-g addPaddingChat" >';
+                html+='<img class="am-comment-avatar" src="'+res_head_url+'" alt=""/>';
+                html+='<div class="am-comment-main  " style="padding:5px 0px;" username="'+username+'"  flag="'+flag+'" onclick="showChat('+flag+')">';
+                html+='<span style="color:#000;margin-left:3px;font-size:14px;font-weight: 700;">'+username+'</span>';
+				html+='<span style="float:right;margin-right: 12px;">'+time+'</span><br>';
+                html+='<div  style="float:right;margin-right: 12px;" class="am-comment-bd text'+flag+'">'+val+'</div>';
+                html+='</div></div>';
+              $('#chatContent').prepend(html);
+          }
+
+          //saveMsg(flag,val);
+          if(flag==0){
+              websocket.send(JSON.stringify({'type':3,'msg':val,'user_id':userId,'user_name':user_name,'flag':flag,'send_head_url':head_url,'userToken':userToken}));
+              $("ul.allrecord"+flag).scrollTop($('ul.allrecord'+flag).height()+100);
+
+          }else{
+              websocket.send(JSON.stringify({'type':2,'msg':val,'user_id':userId,'user_name':user_name,'flag':flag,'send_head_url':head_url,'response_user':response_user,'response_user_head_url':response_user_head_url,'userToken':userToken}));
+              $("ul.allrecord"+flag).scrollTop($('ul.allrecord'+flag).height()+100);
+
+          }
+
+      }
+  }
+  
+	//保存用户聊天记录
+	function saveMsg(flag,content){
+	  var time = getTimestamp();
+	  var randstr = randomString(10);
+	  var sign = createSign(time,randstr);
+	  $.ajax({
+		  url:"{:url('index/index/saveChat')}",
+		  type:"post",
+		  datatype:'json',
+		  data:{'token':userToken,'time':time,'randstr':randstr,'sign':sign,'flag':flag,'content':content},
+		  success:function(d){
+			  if(d.code==100){
+				  layer.msg(d.msg,{'icon':6});
+			  }else{
+				  layer.msg(d.msg,{'icon':5});
+			  }
+		  }
+	  })
+	}
+
+
+	//初始化数据，是否有聊天记录，若有显示最后一条记录 用户列表，
+    function getChat(token){
+        var time = getTimestamp();
+        var randstr = randomString(10);
+        var sign = createSign(time,randstr);
+        $.ajax({
+            url:"{:url('index/index/getChat')}",
+            type:'post',
+            data:{'token':token,'time':time,'randstr':randstr,'sign':sign},
+            datatype:'json',
+            success:function(d){
+				//code   100:返回聊天群聊记录 1000:时只群聊记录 1010:还未登陆状态
+                if(d.code==100){
+                    var html = '';
+                    console.log(typeof d.data.allchat);
+                    if(d.data.allchat){
+                        html+='<div class="am-g addPaddingChat  allChatList'+0+'" >';
+                        html+='<img class="am-comment-avatar" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561354963396&di=433a51f44aff8722170a0848efc92f48&imgtype=0&src=http%3A%2F%2Fimgsa.baidu.com%2Fexp%2Fw%3D500%2Fsign%3D0ab5e11db4de9c82a665f98f5c8080d2%2Ffd039245d688d43f1f7994d67a1ed21b0ff43bc5.jpg" alt=""/>';
+                        html+='<div class="am-comment-main  " style="padding:5px 0px;"  onclick="showChat('+ 0+')">';
+                        html+='<span style="color:#03438D;margin-left:3px;font-size:18px;font-weight: 700;">'+'群聊'+'</span>';
+						html+='<div class="am-comment-bd text'+0+'">'+d.data.allchat.content+ '<span style="float:right">'+d.data.allchat.add_time+'</span></div>';
+                        html+='</div></div>';
+                    }
+                    for(var i=0;i< d.data.chat.length; i++){
+                        html+='<div class="am-g addPaddingChat  allChatList'+d.data.chat[i].flag+'" >';
+                        if(userId==d.data.chat[i].user_id) {
+                            html += '<img class="am-comment-avatar" src="' + d.data.chat[i].response_avatar + '" alt=""/>';
+                        }else{
+                            html += '<img class="am-comment-avatar" src="' + d.data.chat[i].user_avatar + '" alt=""/>';
+                        }
+                        html+='<div class="am-comment-main  " style="padding:5px 0px;"  onclick="showChat('+ d.data.chat[i].flag+')">';
+                        if(userId==d.data.chat[i].user_id){
+                            html+='<span style="color:#000;margin-left:3px;font-size:14px;font-weight: 700;">'+d.data.chat[i].response_name+'</span>';
+                        }
+                        if(userId==d.data.chat[i].response_id){
+                            html+='<span style="color:#000;margin-left:3px;font-size:14px;font-weight: 700;">'+d.data.chat[i].username+'</span>';
+                        }
+                        html+='<div class="am-comment-bd text'+d.data.chat[i].flag+'">'+d.data.chat[i].content+ '<span style="float:right">'+d.data.chat[i].add_time+'</span></div>';
+                        html+='</div></div>';
+                    }
+                    $('#chatContent').append(html);
+                }
+                if(d.code==1000){
+                    var html = '';
+                    console.log(typeof d.data.allchat);
+                    if(d.data.allchat){
+                        html+='<div class="am-g addPaddingChat  allChatList'+0+'" >';
+                        html+='<img class="am-comment-avatar" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561354963396&di=433a51f44aff8722170a0848efc92f48&imgtype=0&src=http%3A%2F%2Fimgsa.baidu.com%2Fexp%2Fw%3D500%2Fsign%3D0ab5e11db4de9c82a665f98f5c8080d2%2Ffd039245d688d43f1f7994d67a1ed21b0ff43bc5.jpg" alt=""/>';
+                        html+='<div class="am-comment-main  " style="padding:5px 0px;"  onclick="showChat('+ 0+')">';
+                        html+='<span style="color:#03438D;margin-left:3px;font-size:18px;font-weight: 700;">'+'群聊'+'</span>';
+						html+='<div class="am-comment-bd text'+0+'">'+d.data.allchat.content+ '<span style="float:right">'+d.data.allchat.add_time+'</span></div>';
+                        html+='</div></div>';
+                    }
+
+                    $('#chatContent').append(html);
+                }
+                if(d.code==1010){
+                    layer.msg(d.msg,{'icon':5});
+                    setTimeout(function(){
+                        location.href="{:url('index/login/login')}";
+                    },1000)
+
+                }
+                websocket.send(JSON.stringify({'type':1,'msg':'','user_id':userId}));
+            }
+        })
+    }
+	
+	//获取用户列表
+    function getUserList(token){
+        var time = getTimestamp();
+        var randstr = randomString(10);
+        var sign = createSign(time,randstr);
+        $.ajax({
+            url:"{:url('index/index/getUserList')}",
+            type:'post',
+            data:{'token':token,'time':time,'randstr':randstr,'sign':sign},
+            datatype:'json',
+            success:function(d){
+                if(d.code==100){
+                    var html = '';
+                    for(var i=0;i< d.data.length; i++){
+                        var flag = parseInt(d.data[i].user_id)+parseInt(userId);
+                        html+='<div class="am-g addPaddingChat" style="border:1px solid #ccc;margin:3px 0px;" >';
+                        html+='<img class="am-comment-avatar" src="'+ d.data[i].head_url+'" alt=""/>';
+                        html+='<div class="" style="padding:5px 0px;" username="'+d.data[i].username+'"  onclick="showChat('+flag+')">';
+                        html+='<div class="am-comment-bd userlist'+flag+'"  head_url="'+d.data[i].head_url+'" >'+d.data[i].username+'</div>';
+                        html+='</div></div>';
+                    }
+                    $('#friendContent').append(html);
+                }
+                if(d.code==1010){
+                    layer.msg(d.msg,{'icon':5});
+                    setTimeout(function(){
+                        location.href="{:url('index/login/login')}";
+                    },1000)
+
+                }
+                //websocket.send(JSON.stringify({'type':1,'msg':'','user_id':d.data.user_id}));
+            }
+        })
+    }
+</script>
+

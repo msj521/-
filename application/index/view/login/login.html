@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>登录</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="__STATIC__/assets/i/favicon.png">
+  <link rel="stylesheet" href="__STATIC__/assets/css/amazeui.min.css"/>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+    .noPaddingMargin{
+      padding:0!important;margin:0!important;
+    }
+  </style>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+            <h1>登录</h1>
+        </div>
+        <hr />
+    </div>
+    <div class="am-g">
+        <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+            <form class="am-form am-form-horizontal" id="loginForm">
+                <div class="am-form-group">
+                    <label for="doc-ipt-3" class="am-u-sm-2  noPaddingMargin am-center" style="text-align: center">账号</label>
+                    <div class="am-u-sm-10">
+                        <input type="text" id="doc-ipt-3" name="username" placeholder="账号">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="doc-ipt-pwd-2" class="am-u-sm-2  noPaddingMargin am-center" style="text-align: center">密码</label>
+                    <div class="am-u-sm-10">
+                        <input type="password" id="doc-ipt-pwd-2" name="password" placeholder="密码">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <div class="am-u-sm-12">
+                        <button type="button" class="am-btn am-btn-primary am-btn-block" onclick="login('{:url('index/login/loginHandle')}','loginForm',this)">登录</button>
+                    </div>
+                </div>
+          </form>
+            <hr>
+        </div>
+    </div>
+</body>
+</html>
+<script src="__STATIC__/js/jquery.min.js"></script>
+<script src="__STATIC__/layer/layer.js"></script>
+<script src="__STATIC__/js/common.js"></script>
+<script>
+    function login(url,form,obj)
+    {
+        var username = $('input[name=username]').val();
+        var password = $('input[name=password]').val();
+        var time = getTimestamp();
+        var randstr = randomString(10);
+        var sign = createSign(time,randstr);
+        $.ajax({
+            url:url,
+            type:'post',
+            data:{'username':username,'password':password,'time':time,'randstr':randstr,'sign':sign},
+            datatype:'json',
+            success:function(d){
+                if(d.code==100){
+                    layer.msg(d.msg,{'icon':6});
+                    localStorage.setItem('userToken', d.data);
+                    localStorage.setItem('userId', d.user_id);
+                    localStorage.setItem('head_url', d.head_url);
+                    localStorage.setItem('user_name', d.user_name);
+                    location.href="{:url('index/index/index')}";
+
+                }else{
+                    layer.alert(d.msg,{'icon':5});
+                }
+            }
+        })
+    }
+</script>

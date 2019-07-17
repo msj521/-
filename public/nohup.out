@@ -1,0 +1,753 @@
+1建立了连接
+1服务器发送消息
+2建立了连接
+2服务器发送消息
+服务断开
+3建立了连接
+3服务器发送消息
+服务断开
+4建立了连接
+4服务器发送消息
+服务断开
+5建立了连接
+5服务器发送消息
+5服务器发送消息
+array(9) {
+  ["type"]=>
+  int(2)
+  ["msg"]=>
+  string(6) "你好"
+  ["user_id"]=>
+  string(1) "2"
+  ["user_name"]=>
+  string(6) "刘备"
+  ["flag"]=>
+  string(1) "3"
+  ["send_head_url"]=>
+  string(38) "http://msjfuqang.cn/uploads/刘备.jpg"
+  ["response_user"]=>
+  string(6) "张飞"
+  ["response_user_head_url"]=>
+  string(38) "http://msjfuqang.cn/uploads/张飞.jpg"
+  ["userToken"]=>
+  string(32) "2ff5d8516d7c8a5fc3ccacdee897cd3b"
+}
+异步完成任务
+1服务器发送消息
+array(9) {
+  ["type"]=>
+  int(2)
+  ["msg"]=>
+  string(6) "你好"
+  ["user_id"]=>
+  string(1) "1"
+  ["user_name"]=>
+  string(6) "张飞"
+  ["flag"]=>
+  string(1) "3"
+  ["send_head_url"]=>
+  string(38) "http://msjfuqang.cn/uploads/张飞.jpg"
+  ["response_user"]=>
+  string(6) "刘备"
+  ["response_user_head_url"]=>
+  string(38) "http://msjfuqang.cn/uploads/刘备.jpg"
+  ["userToken"]=>
+  string(32) "c3bd62c117e2e724587e5fc17e519117"
+}
+异步完成任务
+服务断开
+1建立了连接
+1服务器发送消息
+2建立了连接
+2服务器发送消息
+1服务器发送消息
+2服务器发送消息
+1服务器发送消息
+[2019-07-12 14:24:59 $1779.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=0, signal=9
+[2019-07-12 14:24:59 $1779.0]	WARNING	swManager_check_exit_status: worker#1 abnormal exit, status=0, signal=9
+2服务器发送消息
+服务断开
+服务断开
+3建立了连接
+3服务器发送消息
+服务断开
+4建立了连接
+4服务器发送消息
+服务断开
+5建立了连接
+5服务器发送消息
+服务断开
+6建立了连接
+6服务器发送消息
+服务断开
+7建立了连接
+7服务器发送消息
+服务断开
+8建立了连接
+8服务器发送消息
+服务断开
+9建立了连接
+9服务器发送消息
+服务断开
+10建立了连接
+10服务器发送消息
+服务断开
+11建立了连接
+11服务器发送消息
+服务断开
+12建立了连接
+12服务器发送消息
+12服务器发送消息
+13建立了连接
+13服务器发送消息
+13服务器发送消息
+服务断开
+14建立了连接
+14服务器发送消息
+14服务器发送消息
+服务断开
+15建立了连接
+15服务器发送消息
+服务断开
+16建立了连接
+16服务器发送消息
+16服务器发送消息
+16服务器发送消息
+服务断开
+17建立了连接
+17服务器发送消息
+16服务器发送消息
+1建立了连接
+1服务器发送消息
+2建立了连接
+2服务器发送消息
+2服务器发送消息
+服务断开
+3建立了连接
+3服务器发送消息
+2服务器发送消息
+服务断开
+4建立了连接
+4服务器发送消息
+服务断开
+服务断开
+5建立了连接
+5服务器发送消息
+服务断开
+6建立了连接
+6服务器发送消息
+服务断开
+7建立了连接
+7服务器发送消息
+服务断开
+8建立了连接
+8服务器发送消息
+服务断开
+9建立了连接
+9服务器发送消息
+服务断开
+10建立了连接
+10服务器发送消息
+11建立了连接
+11服务器发送消息
+服务断开
+12建立了连接
+12服务器发送消息
+服务断开
+13建立了连接
+13服务器发送消息
+服务断开
+服务断开
+14建立了连接
+14服务器发送消息
+服务断开
+15建立了连接
+15服务器发送消息
+服务断开
+16建立了连接
+16服务器发送消息
+服务断开
+17建立了连接
+17服务器发送消息
+服务断开
+18建立了连接
+服务断开
+19建立了连接
+服务断开
+20建立了连接
+服务断开
+21建立了连接
+21服务器发送消息
+服务断开
+22建立了连接
+22服务器发送消息
+服务断开
+23建立了连接
+23服务器发送消息
+服务断开
+24建立了连接
+24服务器发送消息
+服务断开
+25建立了连接
+25服务器发送消息
+26建立了连接
+26服务器发送消息
+服务断开
+27建立了连接
+27服务器发送消息
+服务断开
+28建立了连接
+28服务器发送消息
+服务断开
+29建立了连接
+29服务器发送消息
+服务断开
+服务断开
+30建立了连接
+30服务器发送消息
+服务断开
+31建立了连接
+31服务器发送消息
+服务断开
+32建立了连接
+32服务器发送消息
+33建立了连接
+33服务器发送消息
+33服务器发送消息
+服务断开
+34建立了连接
+34服务器发送消息
+服务断开
+35建立了连接
+35服务器发送消息
+服务断开
+36建立了连接
+36服务器发送消息
+36服务器发送消息
+服务断开
+37建立了连接
+37服务器发送消息
+服务断开
+38建立了连接
+38服务器发送消息
+37服务器发送消息
+服务断开
+39建立了连接
+39服务器发送消息
+39服务器发送消息
+服务断开
+服务断开
+40建立了连接
+40服务器发送消息
+41建立了连接
+41服务器发送消息
+41服务器发送消息
+服务断开
+42建立了连接
+42服务器发送消息
+42服务器发送消息
+服务断开
+43建立了连接
+43服务器发送消息
+服务断开
+44建立了连接
+44服务器发送消息
+44服务器发送消息
+服务断开
+45建立了连接
+45服务器发送消息
+服务断开
+46建立了连接
+46服务器发送消息
+服务断开
+47建立了连接
+47服务器发送消息
+服务断开
+48建立了连接
+48服务器发送消息
+服务断开
+服务断开
+49建立了连接
+49服务器发送消息
+服务断开
+50建立了连接
+50服务器发送消息
+服务断开
+51建立了连接
+51服务器发送消息
+服务断开
+52建立了连接
+52服务器发送消息
+服务断开
+53建立了连接
+53服务器发送消息
+服务断开
+54建立了连接
+54服务器发送消息
+服务断开
+55建立了连接
+55服务器发送消息
+服务断开
+56建立了连接
+56服务器发送消息
+56服务器发送消息
+服务断开
+57建立了连接
+57服务器发送消息
+服务断开
+58建立了连接
+58服务器发送消息
+58服务器发送消息
+59建立了连接
+59服务器发送消息
+59服务器发送消息
+服务断开
+60建立了连接
+60服务器发送消息
+60服务器发送消息
+服务断开
+服务断开
+61建立了连接
+61服务器发送消息
+服务断开
+62建立了连接
+62服务器发送消息
+63建立了连接
+63服务器发送消息
+服务断开
+64建立了连接
+64服务器发送消息
+服务断开
+65建立了连接
+65服务器发送消息
+服务断开
+66建立了连接
+66服务器发送消息
+服务断开
+67建立了连接
+67服务器发送消息
+服务断开
+68建立了连接
+68服务器发送消息
+服务断开
+服务断开
+69建立了连接
+69服务器发送消息
+服务断开
+70建立了连接
+70服务器发送消息
+服务断开
+71建立了连接
+71服务器发送消息
+72建立了连接
+72服务器发送消息
+服务断开
+73建立了连接
+73服务器发送消息
+服务断开
+74建立了连接
+74服务器发送消息
+74服务器发送消息
+73服务器发送消息
+服务断开
+75建立了连接
+75服务器发送消息
+74服务器发送消息
+服务断开
+76建立了连接
+76服务器发送消息
+76服务器发送消息
+74服务器发送消息
+76服务器发送消息
+服务断开
+77建立了连接
+77服务器发送消息
+77服务器发送消息
+服务断开
+78建立了连接
+78服务器发送消息
+78服务器发送消息
+服务断开
+79建立了连接
+79服务器发送消息
+79服务器发送消息
+79服务器发送消息
+服务断开
+80建立了连接
+80服务器发送消息
+80服务器发送消息
+80服务器发送消息
+服务断开
+81建立了连接
+81服务器发送消息
+服务断开
+服务断开
+82建立了连接
+82服务器发送消息
+83建立了连接
+83服务器发送消息
+82服务器发送消息
+83服务器发送消息
+服务断开
+84建立了连接
+84服务器发送消息
+84服务器发送消息
+服务断开
+服务断开
+85建立了连接
+85服务器发送消息
+服务断开
+86建立了连接
+86服务器发送消息
+87建立了连接
+87服务器发送消息
+服务断开
+服务断开
+88建立了连接
+88服务器发送消息
+服务断开
+89建立了连接
+89服务器发送消息
+服务断开
+90建立了连接
+90服务器发送消息
+服务断开
+91建立了连接
+91服务器发送消息
+服务断开
+92建立了连接
+92服务器发送消息
+服务断开
+93建立了连接
+93服务器发送消息
+服务断开
+94建立了连接
+94服务器发送消息
+服务断开
+95建立了连接
+95服务器发送消息
+服务断开
+服务断开
+97建立了连接
+97服务器发送消息
+服务断开
+98建立了连接
+98服务器发送消息
+服务断开
+99建立了连接
+99服务器发送消息
+服务断开
+100建立了连接
+100服务器发送消息
+服务断开
+101建立了连接
+101服务器发送消息
+服务断开
+102建立了连接
+102服务器发送消息
+服务断开
+104建立了连接
+104服务器发送消息
+103建立了连接
+103服务器发送消息
+服务断开
+服务断开
+105建立了连接
+105服务器发送消息
+服务断开
+106建立了连接
+106服务器发送消息
+服务断开
+107建立了连接
+107服务器发送消息
+服务断开
+108建立了连接
+108服务器发送消息
+服务断开
+109建立了连接
+109服务器发送消息
+服务断开
+110建立了连接
+110服务器发送消息
+服务断开
+111建立了连接
+111服务器发送消息
+服务断开
+112建立了连接
+112服务器发送消息
+服务断开
+113建立了连接
+113服务器发送消息
+服务断开
+114建立了连接
+114服务器发送消息
+服务断开
+PHP Notice:  Undefined variable: request_date in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 37
+
+Notice: Undefined variable: request_date in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 37
+:1-建立了连接
+PHP Notice:  Undefined variable: request_date in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+
+Notice: Undefined variable: request_date in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+PHP Notice:  Undefined variable: req in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+
+Notice: Undefined variable: req in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+PHP Notice:  Trying to get property of non-object in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+
+Notice: Trying to get property of non-object in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+:-服务器发送消息
+PHP Notice:  Undefined variable: request_date in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 37
+
+Notice: Undefined variable: request_date in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 37
+:1-建立了连接
+PHP Notice:  Undefined variable: request_date in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+
+Notice: Undefined variable: request_date in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+PHP Notice:  Undefined variable: req in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+
+Notice: Undefined variable: req in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+PHP Notice:  Trying to get property of non-object in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+
+Notice: Trying to get property of non-object in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 42
+:-服务器发送消息
+PHP Warning:  var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+
+Warning: var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+PHP Warning:  var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+
+Warning: var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+PHP Warning:  var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+
+Warning: var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+PHP Warning:  var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+
+Warning: var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+PHP Warning:  var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+
+Warning: var_export does not handle circular references in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 35
+Swoole\WebSocket\Server::__set_state(array(
+   'onConnect' => NULL,
+   'onReceive' => NULL,
+   'onClose' => NULL,
+   'onPacket' => NULL,
+   'onBufferFull' => NULL,
+   'onBufferEmpty' => NULL,
+   'onStart' => NULL,
+   'onShutdown' => NULL,
+   'onWorkerStart' => NULL,
+   'onWorkerStop' => NULL,
+   'onWorkerExit' => NULL,
+   'onWorkerError' => NULL,
+   'onTask' => 
+  array (
+    0 => 
+    Websocket::__set_state(array(
+       'server' => NULL,
+    )),
+    1 => 'onTask',
+  ),
+   'onFinish' => 
+  array (
+    0 => 
+    Websocket::__set_state(array(
+       'server' => NULL,
+    )),
+    1 => 'onFinish',
+  ),
+   'onManagerStart' => NULL,
+   'onManagerStop' => NULL,
+   'onPipeMessage' => NULL,
+   'connections' => 
+  Swoole\Connection\Iterator::__set_state(array(
+  )),
+   'host' => '0.0.0.0',
+   'port' => 9502,
+   'type' => 1,
+   'mode' => 2,
+   'ports' => 
+  array (
+    0 => 
+    Swoole\Server\Port::__set_state(array(
+       'onConnect' => NULL,
+       'onReceive' => NULL,
+       'onClose' => 
+      array (
+        0 => 
+        Websocket::__set_state(array(
+           'server' => NULL,
+        )),
+        1 => 'onClose',
+      ),
+       'onPacket' => NULL,
+       'onBufferFull' => NULL,
+       'onBufferEmpty' => NULL,
+       'onRequest' => NULL,
+       'onHandShake' => NULL,
+       'onMessage' => 
+      array (
+        0 => 
+        Websocket::__set_state(array(
+           'server' => NULL,
+        )),
+        1 => 'onMessage',
+      ),
+       'onOpen' => 
+      array (
+        0 => 
+        Websocket::__set_state(array(
+           'server' => NULL,
+        )),
+        1 => 'onOpen',
+      ),
+       'host' => '0.0.0.0',
+       'port' => 9502,
+       'type' => 1,
+       'sock' => 3,
+       'setting' => 
+      array (
+        'worker_num' => 2,
+        'task_worker_num' => 2,
+      ),
+       'connections' => 
+      Swoole\Connection\Iterator::__set_state(array(
+      )),
+    )),
+  ),
+   'master_pid' => 6481,
+   'manager_pid' => 6483,
+   'worker_id' => 1,
+   'taskworker' => false,
+   'worker_pid' => 6488,
+   'onRequest' => NULL,
+   'onHandshake' => NULL,
+   'setting' => 
+  array (
+    'worker_num' => 2,
+    'task_worker_num' => 2,
+    'open_http_protocol' => true,
+    'open_mqtt_protocol' => false,
+    'open_eof_check' => false,
+    'open_length_check' => false,
+    'open_websocket_protocol' => true,
+    'buffer_output_size' => 2097152,
+    'max_connection' => 65535,
+  ),
+))1建立了连接
+1服务器发送消息
+1建立了连接
+1服务器发送消息
+object(Swoole\Http\Request)#6 (9) {
+  ["fd"]=>
+  int(1)
+  ["header"]=>
+  array(12) {
+    ["host"]=>
+    string(18) "47.100.226.80:9502"
+    ["connection"]=>
+    string(7) "Upgrade"
+    ["pragma"]=>
+    string(8) "no-cache"
+    ["cache-control"]=>
+    string(8) "no-cache"
+    ["upgrade"]=>
+    string(9) "websocket"
+    ["origin"]=>
+    string(24) "http://chat.msjfuqang.cn"
+    ["sec-websocket-version"]=>
+    string(2) "13"
+    ["user-agent"]=>
+    string(115) "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36"
+    ["accept-encoding"]=>
+    string(13) "gzip, deflate"
+    ["accept-language"]=>
+    string(23) "zh-CN,zh;q=0.9,en;q=0.8"
+    ["sec-websocket-key"]=>
+    string(24) "Z4OBMfSRZeCNCIOBnu09fw=="
+    ["sec-websocket-extensions"]=>
+    string(42) "permessage-deflate; client_max_window_bits"
+  }
+  ["server"]=>
+  array(11) {
+    ["request_method"]=>
+    string(3) "GET"
+    ["request_uri"]=>
+    string(1) "/"
+    ["path_info"]=>
+    string(1) "/"
+    ["request_time"]=>
+    int(1563170298)
+    ["request_time_float"]=>
+    float(1563170298.7703)
+    ["server_port"]=>
+    int(9502)
+    ["remote_port"]=>
+    int(21313)
+    ["remote_addr"]=>
+    string(15) "203.110.178.229"
+    ["master_time"]=>
+    int(1563170298)
+    ["server_protocol"]=>
+    string(8) "HTTP/1.1"
+    ["server_software"]=>
+    string(18) "swoole-http-server"
+  }
+  ["request"]=>
+  NULL
+  ["cookie"]=>
+  array(1) {
+    ["JSESSIONID"]=>
+    string(32) "6D157F867084F5EDF0657E984E5FDB04"
+  }
+  ["get"]=>
+  NULL
+  ["files"]=>
+  NULL
+  ["post"]=>
+  NULL
+  ["tmpfiles"]=>
+  NULL
+}
+string(19) "2019-07-15 13:58:18"
+1建立了连接
+1服务器发送消息
+PHP Fatal error:  Constant expression contains invalid operations in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 11
+
+Fatal error: Constant expression contains invalid operations in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 11
+string(19) "2019-07-15 14:00:07"
+1建立了连接
+1服务器发送消息
+PHP Parse error:  syntax error, unexpected ':', expecting :: (T_PAAMAYIM_NEKUDOTAYIM) in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 38
+
+Parse error: syntax error, unexpected ':', expecting :: (T_PAAMAYIM_NEKUDOTAYIM) in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 38
+2019-07-15 14:01:00:1-建立了连接
+1服务器发送消息
+2019-07-15 14:03:23:1-建立了连接
+2019-07-15 14:03:23:1-服务器发送消息
+PHP Notice:  Trying to get property of non-object in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 235
+
+Notice: Trying to get property of non-object in /home/wwwroot/default/im/public/im_SwooleWebSocketServer.php on line 235
+2019-07-15 14:03:23:-服务断开
+2019-07-15 14:04:16:1-建立了连接
+2019-07-15 14:04:16:1-服务器发送消息
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:2-建立了连接
+2019-07-15 14:04:16:2-服务器发送消息
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:3-建立了连接
+2019-07-15 14:04:16:3-服务器发送消息
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:4-建立了连接
+2019-07-15 14:04:16:4-服务器发送消息
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:5-建立了连接
+2019-07-15 14:04:16:5-服务器发送消息
+2019-07-15 14:04:16:6-建立了连接
+2019-07-15 14:04:16:6-服务器发送消息
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:9-建立了连接
+2019-07-15 14:04:16:9-服务器发送消息
+2019-07-15 14:04:16:服务断开
+2019-07-15 14:04:16:服务断开
